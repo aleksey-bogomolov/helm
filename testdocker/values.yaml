@@ -1,0 +1,33 @@
+
+replicaCount: 2
+
+image:
+  repository: bogomolovaleksey/testdocker
+
+service:
+  type: NodePort
+  port: 9000
+  targetPort: 8005
+ 
+externalPostgresql:
+  postgresqlUsername: myuser
+  postgresqlPassword: passwd
+  postgresqlDatabase: myapp
+  postgresqlHost: "postgres"
+  postgresqlPort: "5432"
+
+metrics:
+  serviceMonitor:
+    enabled: true
+ 
+ingress:
+  enabled: true
+  host: arch.homework
+  appPath: "/otusapp"
+  appName: testdocker
+  appSvcPort: 9000
+  locustPath: "/locust"
+  locustName: locust-master-svc
+  locustSvcPort: 8089
+
+

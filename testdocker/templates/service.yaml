@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "testdocker.fullname" . }}
+  labels:
+    {{- include "testdocker.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "testdocker.selectorLabels" . | nindent 4 }}
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: web
