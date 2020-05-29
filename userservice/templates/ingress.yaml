@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: userservice
+  annotations:
+    # nginx.ingress.kubernetes.io/auth-url: "http://authserver.auth.svc.cluster.local:9001/auth/connect/checksession"
+    # nginx.ingress.kubernetes.io/auth-signin: "http://$host/auth/Account/Login?ReturnUrl=$escaped_request_uri"
+spec:
+  rules:
+  - host: arch.homework
+    http:
+      paths:
+      - path: /Account
+        backend:
+          serviceName: userservice
+          servicePort: {{ .Values.service.targetPort }}

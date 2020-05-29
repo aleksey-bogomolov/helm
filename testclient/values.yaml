@@ -1,0 +1,11 @@
+
+replicaCount: 1
+
+image:
+  repository: bogomolovaleksey/testclient
+
+service:
+  type: NodePort
+  port: 9003  
+  targetPort: 9003
+ 

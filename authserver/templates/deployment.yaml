@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "authserver.fullname" . }}
+  labels:
+    {{- include "authserver.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "authserver.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "authserver.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          ports:
+            - name: web
+              containerPort: {{ .Values.service.targetPort }}
+          env:
+            - name: AuthServer_DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: authserver-secret
+                  key: DATABASE_URI

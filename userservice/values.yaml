@@ -1,0 +1,18 @@
+
+replicaCount: 1
+
+image:
+  repository: bogomolovaleksey/userservice
+
+service:
+  type: NodePort
+  port: 8005
+  targetPort: 8005
+  
+externalPostgresql:
+  postgresqlUsername: myuser
+  postgresqlPassword: passwd
+  postgresqlDatabase: myapp
+  postgresqlHost: "postgres"
+  postgresqlPort: "5432"
+ 

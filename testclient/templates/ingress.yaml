@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: testclient
+  labels:
+    {{- include "testclient.labels" . | nindent 4 }}
+spec:
+  rules:
+  - host: arch.homework
+    http:
+      paths:
+      - backend:
+          serviceName: testclient
+          servicePort: {{ .Values.service.targetPort }}
+        path: /
+

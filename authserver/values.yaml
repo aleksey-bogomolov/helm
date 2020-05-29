@@ -1,0 +1,17 @@
+
+replicaCount: 1
+
+image:
+  repository: bogomolovaleksey/authserver
+
+service:
+  type: NodePort
+  port: 9001
+  targetPort: 9001
+ 
+externalPostgresql:
+  postgresqlUsername: myuser
+  postgresqlPassword: passwd
+  postgresqlDatabase: myapp
+  postgresqlHost: "postgres"
+  postgresqlPort: "5432"
