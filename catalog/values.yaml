@@ -1,0 +1,32 @@
+
+replicaCount: 1
+
+image:
+  repository: bogomolovaleksey/catalog
+
+service:
+  type: NodePort
+  port: 8006
+  targetPort: 8006
+  
+externalPostgresql:
+  postgresqlUsername: myuser
+  postgresqlPassword: passwd
+  postgresqlDatabase: myapp
+  postgresqlHost: "postgres"
+  postgresqlPort: "5432"
+ 
+metrics:
+  serviceMonitor:
+    enabled: true
+ 
+ingress:
+  enabled: true
+  host: arch.homework
+  appPath: "/catalog"
+  appName: catalog
+  appSvcPort: 8006
+  locustPath: "/locust"
+  locustName: locust-master-svc
+  locustSvcPort: 8089
+

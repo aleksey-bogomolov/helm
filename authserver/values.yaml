@@ -6,8 +6,8 @@ image:
 
 service:
   type: NodePort
-  port: 9001
-  targetPort: 9001
+  port: 9002
+  targetPort: 9002
  
 externalPostgresql:
   postgresqlUsername: myuser
